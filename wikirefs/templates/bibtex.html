@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Bibtex entry for {{ entry }}{% endblock %}
+
+{% block content %}
+<h1>Bibtex Result</h1>
+
+<div class="bibtex">
+@{{bibtype}}{ {{bibcode}},<br />
+    {% for name,val in bibentries %}
+        {{ name }} = "{{ val }}",<br />
+    {% endfor %}
+}
+</div>
+{% endblock %}
