@@ -72,11 +72,14 @@ TEMPLATE_DIRS = (
     '/home/luispedro/projects/refsweb/',
 )
 
+DJAPIAN_DATABASE_PATH = '/home/luispedro/projects/refsweb/djapian_data/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'refsweb.wikirefs',
+    'djapian',
+    'wikirefs',
 )

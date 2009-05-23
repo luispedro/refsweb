@@ -13,6 +13,7 @@ admin.site.register(models.BibTexEntry)
 urlpatterns = patterns('wikirefs',
     (r'^$', 'index.index'),
     (r'^doi/(.*)/(.*)$', 'views.get_doi'),
+    (r'^search/(.*)/(.*)$', 'views.search'),
     (r'^admin/(.*)', admin.site.root),
 )
 

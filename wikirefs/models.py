@@ -21,6 +21,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models import *
 from django.utils.translation import ugettext_lazy as tr
+import djapian
 
 class BibTexEntry(Model):
     title = CharField(tr(u'Title'), max_length=512)
@@ -30,6 +31,17 @@ class BibTexEntry(Model):
     pages = CharField(tr(u'Pages'), max_length=32)
     doi = CharField(tr(u'DOI'), max_length=128)
     url = CharField(tr(u'url'), max_length=128)
+
+class BibTexEntryIndexer(djapian.Indexer):
+    fields=[]
+    tags=[
+        ('title','title'),
+        ('author','author')
+        ]
+    def trigger(self,obj):
+        return True
+
+djapian.add_index(BibTexEntry, BibTexEntryIndexer, attach_as='indexer')
 
 class BibTexField(Model):
     entry = ForeignKey(BibTexEntry)
