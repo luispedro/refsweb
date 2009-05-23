@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2009 Luís Pedro Coelho <lpc@cmu.edu>
 # Part of refsweb
-# License: GPL 2 or later (see LICENSE file)
-
+# License: GNU Affero GPL version 3 or later (see LICENSE file)
 from __future__ import division, with_statement
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
