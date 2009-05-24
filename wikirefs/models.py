@@ -41,7 +41,8 @@ class BibTexEntryIndexer(djapian.Indexer):
     def trigger(self,obj):
         return True
 
-djapian.add_index(BibTexEntry, BibTexEntryIndexer, attach_as='indexer')
+if not hasattr(BibTexEntry,'indexer'):
+    djapian.add_index(BibTexEntry, BibTexEntryIndexer, attach_as='indexer')
 
 class BibTexField(Model):
     entry = ForeignKey(BibTexEntry)
