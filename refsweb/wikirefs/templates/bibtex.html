@@ -6,9 +6,9 @@
 <h1>Bibtex Result</h1>
 
 <div class="bibtex">
-@{{bibtype}}{ {{bibcode}},<br />
+@{{bibtype}}{{ "{" }}{{bibcode}},<br />
     {% for name,val in bibentries %}
-        {{ name }} = "{{ val }}",<br />
+        {{ name }} = {{"{"}}{{ val }}{{"}"}},<br />
     {% endfor %}
 }
 </div>
