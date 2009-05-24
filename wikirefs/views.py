@@ -41,22 +41,18 @@ def get_doi(request, doi, format):
 
 
 
-def search(request, str, format):
+def search(request, query, format):
     '''
-    search(request, str, format)
+    search(request, query, format)
 
     Lookup a reference based on the full text.
     '''
     if format != 'bibtex+html':
         return _wrong_format(format)
-    results = BibTexEntry.objects.filter(t)
+    results = BibTexEntry.indexer.search(query)
     if not results:
         r = HttpResponse()
         r.write('<p>Sorry mate, not found.')
-        return r
-    if len(results) > 1:
-        r = HttpResponse()
-        r.write('<p>Sorry mate, this is all very confusing.</p>')
         return r
     b = results[0]
     bibvalues = b.__dict__.items()
