@@ -3,6 +3,7 @@
 # Part of refsweb
 # License: GNU Affero GPL version 3 or later (see LICENSE file)
 from __future__ import division, with_statement
+from django.utils.translation import ugettext as tr
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from .models import BibTexEntry
@@ -23,23 +24,19 @@ def get_doi(request, doi, format):
         return _wrong_format(format)
     results = BibTexEntry.objects.filter(doi=doi)
     if not results:
-        r = HttpResponse()
-        r.write('<p>Sorry mate, not found.')
-        return r
+        return render_to_response('notfound.html')
     if len(results) > 1:
-        r = HttpResponse()
-        r.write('<p>Sorry mate, this is all very confusing.</p>')
-        return r
+        return render_to_response('error.html', {
+            'error': tr(u'<p>Sorry mate, this is all very confusing.</p>')
+        })
     b = results[0]
     bibvalues = b.__dict__.items()
-    return render_to_response('wikirefs/templates/bibtex.html',
+    return render_to_response('bibtex.html',
         {
             'bibtype' : 'article',
             'bibcode' : 'wikirefs_download',
             'bibentries' : bibvalues,
         })
-
-
 
 def search(request, query, format):
     '''
@@ -51,9 +48,7 @@ def search(request, query, format):
         return _wrong_format(format)
     results = BibTexEntry.indexer.search(query)
     if not results:
-        r = HttpResponse()
-        r.write('<p>Sorry mate, not found.')
-        return r
+        return render_to_response('notfound.html', {'query':query})
     b = results[0]
     bibvalues = b.__dict__.items()
     return render_to_response('wikirefs/templates/bibtex.html',

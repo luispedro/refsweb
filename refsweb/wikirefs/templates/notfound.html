@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Sorry, not found{% endblock %}
+
+{% block content %}
+<h1>Not found</h1>
+
+<form id='main-search'>
+<input type='text' value='{{ query }}' />
+<input type='submit' value='Search' />
+</form>
+
+{% endblock %}
