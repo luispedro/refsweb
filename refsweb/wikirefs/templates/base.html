@@ -1,8 +1,11 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style/basic.css" />
 </head>
 <body>
+    <img id='title-image' src="/static/images/title.png" alt="Wikirefs" />
+
     {% block content %}{% endblock %}
 </body>
 </html>

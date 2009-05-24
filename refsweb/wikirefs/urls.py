@@ -5,6 +5,7 @@
 from __future__ import division, with_statement
 
 from django.conf.urls.defaults import *
+from django.conf import settings
 from django.contrib import admin
 import models
 admin.autodiscover()
@@ -16,4 +17,9 @@ urlpatterns = patterns('wikirefs',
     (r'^search/(.*)/(.*)$', 'views.search'),
     (r'^admin/(.*)', admin.site.root),
 )
+if settings.DEBUG:
+    from os.path import abspath
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/luispedro/projects/refsweb/static/'}),
+    )
 

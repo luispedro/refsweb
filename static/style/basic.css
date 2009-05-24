@@ -1,0 +1,16 @@
+body {
+    margin-left: 1em;
+    margin-right:2em;
+    background: url('/static/images/bg-gradient.png') white;
+    background-repeat: repeat-x;
+    font: 'Lucida' sans-serif;
+}
+
+#title-img {
+    margin-left: 5em;
+    margin-top: 2em;
+}
+
+h1 {
+    color: #222;
+}
